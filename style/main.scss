@@ -1,0 +1,31 @@
+
+[v-cloak]{
+	display: none;
+}
+.clearfix::before,
+.clearfix::after {
+    display: table;
+    content: " ";
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.tab-cont{
+	padding: 0 40rpx;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.search-cont{
+	padding: 0 20rpx;
+}
+.sticky{
+	position: sticky;
+	top: 0;
+	background-color: #fff;
+	z-index: 100;
+}
+.page-padding-lr{
+	padding: 0 40rpx;
+}

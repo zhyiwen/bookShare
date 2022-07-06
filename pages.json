@@ -1,0 +1,95 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/bookshelf/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/books/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/boorow/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/find/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+
+	],
+	"subPackages": [{
+		"root": "pages/bookAbout",
+		"pages": [{
+			"path": "bookDetail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}]
+	}],
+	"tabBar": {
+		"color": "#ccc",
+		"selectedColor": "#333",
+		"backgroundColor": "#fff",
+		"borderStyle": "white",
+		"iconWidth": "18px",
+		"list": [{
+				"iconPath": "static/tabbar/scan.png",
+				"selectedIconPath": "static/tabbar/scan_active.png",
+				"pagePath": "pages/boorow/index",
+				"text": "借阅"
+			},
+			{
+				"iconPath": "static/tabbar/books.png",
+				"selectedIconPath": "static/tabbar/books_active.png",
+				"pagePath": "pages/books/index",
+				"text": "书库"
+			},
+			{
+				"iconPath": "static/tabbar/bookshelf.png",
+				"selectedIconPath": "static/tabbar/bookshelf_active.png",
+				"pagePath": "pages/bookshelf/index",
+				"text": "书架"
+			},
+			{
+				"iconPath": "static/tabbar/find.png",
+				"selectedIconPath": "static/tabbar/find_active.png",
+				"pagePath": "pages/find/index",
+				"text": "发现"
+			},
+			{
+				"iconPath": "static/tabbar/me.png",
+				"selectedIconPath": "static/tabbar/me_active.png",
+				"pagePath": "pages/home/home",
+				"text": "我的"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#fff",
+		"backgroundColor": "#fff"
+	}
+}
