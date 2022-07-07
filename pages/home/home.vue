@@ -80,21 +80,9 @@
 				this.tabCurrent = index;
 			},
 			updateUserProfile(){
-				// #ifdef MP-WEIXIN
-				uni.getUserProfile({
-					desc: '用于完善会员资料',
-					success: (res) => {
-						console.log(res);
-						this.userInfo = Object.assign(this.userInfo,res.userInfo);
-						cloudApi.call({
-							name:"updateuserinfo",
-							data:{
-								userInfo: this.userInfo
-							}
-						})
-					}
+				uni.navigateTo({
+					url:'/pages/home/editUserInfo'
 				})
-				// #endif
 			},
 		}
 	}

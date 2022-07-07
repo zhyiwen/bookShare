@@ -51,12 +51,12 @@ exports.main = async (event, context) => {
 		return dbRes
 	}else if(action == "listAll"){
 		if(event.searchLabel){
-			dbRes = await db.collection("isbnlib").field({owner:false}).where({
+			dbRes = await db.collection("books").field({owner:false}).where({
 				title: new RegExp(event.searchLabel)
 			}).get();
 			
 		}else{
-			dbRes = await db.collection("isbnlib").field({owner:false}).get();
+			dbRes = await db.collection("books").field({owner:false}).get();
 			// const $ = db.command.aggregate;
 			// dbRes = await db.collection("books").aggregate().group({
 			// 	"_id":"$isbnid",
@@ -69,31 +69,25 @@ exports.main = async (event, context) => {
 		}
 		return dbRes
 	}else if(action == 'getBookDetail'){
-		
-		if(event.myBooks){
-			let bookInfo = await db.collection('books').where({
-				_id: event.id
-			}).get()
-			let data = bookInfo.data[0]
-			let bookInfoForISBN = await db.collection('isbnlib').where({
-				isbn: data.isbn
-			}).get()
-			dbRes = {
-				...data,
-				abstract: bookInfoForISBN.data[0].abstract
-			}
-		}else{
-			let bookInfo = await db.collection('books').where({
-				isbnid: event.id
-			}).get()
-			let data = bookInfo.data[0]
-			let bookInfoForISBN = await db.collection('isbnlib').where({
-				isbn: data.isbn
-			}).get()
-			dbRes = {
-				...data,
-				abstract: bookInfoForISBN.data[0].abstract
-			}
+		let bookInfo = await db.collection('books').where({
+			_id: event.id
+		}).get()
+		let data = bookInfo.data[0]
+		let bookInfoForISBN = await db.collection('isbnlib').field({abstract:true}).where({
+			isbn: data.isbn
+		}).get()
+		let bookInfoForUser = await db.collection('users').field({openid:false}).where({
+			openid: data.owner
+		}).get()
+		let bookSelf = 0
+		if(data.owner == payload.openid){
+			bookSelf = 1
+		}
+		dbRes = {
+			...data,
+			bookSelf: bookSelf,
+			abstract: bookInfoForISBN.data[0].abstract,
+			user: bookInfoForUser.data[0]
 		}
 		
 		return dbRes

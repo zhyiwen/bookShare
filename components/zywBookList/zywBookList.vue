@@ -25,11 +25,15 @@
 					return [];
 				}
 			},
-			myBook: Boolean
+			myBook: {
+				type: Boolean,
+				default: false
+			}
 		},
 		methods:{
 			toDetail(id){
 				console.log(id)
+				console.log(this.myBook)
 				if(this.myBook){
 					uni.navigateTo({
 						url: '/pages/bookAbout/bookDetail?id='+id+'&myBook=1'

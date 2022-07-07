@@ -1,9 +1,9 @@
 <!-- 图书详情页 -->
 <template>
 	<view class="page-content page-padding-lr">
-		<view class="book-title">
+		<view class="book-title" v-cloak>
 			{{bookInfo.title}}
-			<view class="book-like">
+			<view class="book-like" v-if="myBooks !== 1">
 				<uni-icons type="heart-filled" color="#dd524d" size="22" v-if="bookInfo.store" @click="toStore"></uni-icons>
 				<uni-icons type="heart" color="#444" size="22" v-else @click="toStore"></uni-icons>
 			</view>
@@ -13,8 +13,17 @@
 			{{bookInfo.abstract}}
 		</view>
 		<view class="book-rate" v-cloak>
-			<uni-rate :value="bookInfo.rating.star_count"></uni-rate>
-			<view class="book-douban">豆瓣评分：<text class="span">{{bookInfo.rating.value}}</text></view>
+			<uni-rate :value="bookInfo.rating.star_count" v-if="bookInfo.rating.value != 0"></uni-rate>
+			<view class="book-douban">
+				<view v-if="bookInfo.rating.value != 0">豆瓣评分：<text class="span">{{bookInfo.rating.value}}</text></view>
+				<view v-else>暂无评分</view>
+			</view>
+		</view>
+		<view class="user-info">
+			<view class="user-avatar">
+				<image :src="bookInfo.user.avatarUrl" mode="aspectFill" style="width: 100%;height: 100%;"></image>
+			</view>
+			<view class="user-name">{{bookInfo.user.nickName}}</view>
 		</view>
 	</view>
 </template>
@@ -25,6 +34,7 @@
 		data() {
 			return {
 				id:'',
+				user:'',
 				myBooks: 0,
 				bookInfo: null
 			};
@@ -35,7 +45,9 @@
 			if(options.mybooks){
 				this.mybooks = 1
 			}
-			this.getInfo()
+			this.user = uni.getStorage('jwt')
+			console.log(this.user)
+			this.getInfo();
 		},
 		methods: {
 			// 获取图书详情
@@ -44,11 +56,10 @@
 					name: "books",
 					data: {
 						action: "getBookDetail",
-						id: this.id,
-						myBooks: this.myBooks
+						id: this.id
 					},
 					success: (res) => {
-						console.log(res)
+						console.log('所有信息',res)
 						this.bookInfo = res.result;
 						let doubanVal = res.result.rating.value;
 						this.bookInfo.rating.value = doubanVal.toFixed(1);
@@ -63,6 +74,7 @@
 				}
 				this.toChangeStore()
 			},
+			// 收藏图书
 			async toChangeStore(){
 				await cloudApi.call({
 					name: "books",
@@ -123,6 +135,28 @@
 			color: $uni-color-warning;
 			font-weight: bold;
 		}
+	}
+}
+.user-info{
+	position: relative;
+	margin-top: 80rpx;
+	background-color: #8cb6ff;
+	border-radius: 20rpx;
+	color: #fff;
+	padding: 20rpx;
+	min-height: 100rpx;
+	.user-avatar{
+		position: absolute;
+		top: 20rpx;
+		right: 20rpx;
+		width: 70rpx;
+		height: 70rpx;
+		border-radius: 14rpx;
+		overflow: hidden;
+	}
+	.user-name{
+		font-weight: bold;
+		font-size: 32rpx;
 	}
 }
 </style>

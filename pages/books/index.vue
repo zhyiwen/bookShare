@@ -5,7 +5,7 @@
 				<uni-search-bar placeholder="搜索图书" v-model="searchLabel" :radius="100" cancelButton="none" @confirm="requestBookList" />
 			</view>
 		</view>
-		<zyw-books :list="bookList" myBook></zyw-books>
+		<zyw-books :list="bookList"></zyw-books>
 	</view>
 </template>
 

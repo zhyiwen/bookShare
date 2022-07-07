@@ -10,7 +10,7 @@
 				</button>
 			</view>
 		</view>
-		<zyw-books :list="bookList"></zyw-books>
+		<zyw-books :list="bookList" myBook></zyw-books>
 	</view>
 </template>
 
