@@ -4,6 +4,13 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		
+		},{
 			"path": "pages/bookshelf/index",
 			"style": {
 				"navigationBarTitleText": "",
@@ -30,14 +37,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, {
-			"path": "pages/home/home",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
+		},  {
 			"path": "uview-ui/components/u-avatar-cropper/u-avatar-cropper",
 			"style": {
 				"navigationBarTitleText": "头像裁剪",
