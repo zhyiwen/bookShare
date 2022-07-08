@@ -15,18 +15,20 @@ exports.main = async (event, context) => {
 
 	const payload = verifyToken(token);
 	console.log(payload);
-
-	// 对一个数据项进行更新
-	const dbRes = await db.collection("users").where({
-		openid: dbCmd.eq(payload.openid)
-	}).update({
-		nickName: userInfo.nickName,
-		avatarUrl: userInfo.avatarUrl,
-		gender: userInfo.gender,
-		country: userInfo.country,
-		province: userInfo.province,
-		city: userInfo.city
-	})
-	//返回数据给客户端
-	return dbRes.data
+	let dbRes;
+	if(event.action=='getUser'){
+		dbRes = await db.collection("users").field({openid:false}).where({
+			openid: payload.openid
+		}).get();
+		console.log("get======",dbRes)
+		return dbRes.data[0]
+	}else if(event.action =='updateUser'){
+		// 对一个数据项进行更新
+		dbRes = await db.collection("users").where({
+			openid: dbCmd.eq(payload.openid)
+		}).update(event.userInfo)
+		//返回数据给客户端
+		return dbRes.data
+	}
+	return event
 };

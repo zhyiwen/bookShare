@@ -1,4 +1,7 @@
 {
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/bookshelf/index",
@@ -34,19 +37,14 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "uview-ui/components/u-avatar-cropper/u-avatar-cropper",
+			"style": {
+				"navigationBarTitleText": "头像裁剪",
+				"navigationBarBackgroundColor": "#000000"
+			}
 		}
-
-	    ,{
-            "path" : "pages/home/editUserInfo",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的信息",
-                "enablePullDownRefresh": false,
-				"backgroundColor": "#f3f4f5"
-            }
-            
-        }
-    ],
+	],
 	"subPackages": [{
 		"root": "pages/bookAbout",
 		"pages": [{
@@ -56,6 +54,16 @@
 				"enablePullDownRefresh": false
 			}
 
+		}]
+	}, {
+		"root": "pages/editUserInfo",
+		"pages": [{
+			"path": "index",
+			"style": {
+				"navigationBarTitleText": "我的信息",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#f3f4f5"
+			}
 		}]
 	}],
 	"tabBar": {
@@ -111,7 +119,7 @@
 			},
 			{
 				"name": "editUser",
-				"path": "pages/home/editUserInfo"
+				"path": "pages/editUserInfo/index"
 			}
 		]
 	}

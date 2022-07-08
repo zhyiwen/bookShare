@@ -81,7 +81,7 @@
 			},
 			updateUserProfile(){
 				uni.navigateTo({
-					url:'/pages/home/editUserInfo'
+					url:'/pages/editUserInfo/index'
 				})
 			},
 		}
