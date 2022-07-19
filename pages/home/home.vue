@@ -2,7 +2,7 @@
 	<view class="page-content">
 		<view class="user-info">
 			<view class="user-name">{{userInfo.nickName}}</view>
-			<view class="user-address" v-if="userInfo.city">{{userInfo.city}}</view>
+			<view class="user-address">{{userInfo.province+userInfo.city+userInfo.area || ''}}</view>
 			<view class="user-text-cont">
 				<text class="text-value">34</text>本
 				<view class="text-label">借阅数量</view>
@@ -92,7 +92,7 @@
 	.user-info {
 		position: relative;
 		padding: 30rpx 60rpx;
-		height: 180rpx;
+		height: 230rpx;
 
 		.user-name {
 			font-size: 30rpx;

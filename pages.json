@@ -64,7 +64,16 @@
 				"enablePullDownRefresh": false,
 				"backgroundColor": "#f3f4f5"
 			}
-		}]
+		}    ,{
+                    "path" : "edit",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "个人信息",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 	}],
 	"tabBar": {
 		"color": "#ccc",
